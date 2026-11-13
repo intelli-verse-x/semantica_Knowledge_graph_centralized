@@ -19,9 +19,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    # Locked Playwright1.59 does not support the new ubuntu-latest26.04 image.
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: actions/setup-python@v7
         with:
           python-version: '3.11'
